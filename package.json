@@ -1,0 +1,17 @@
+{
+  "name": "fatcoder",
+  "version": "0.0.1",
+  "author": "xiaoF",
+  "description": "fatcoder",
+  "scripts": {
+      "start": "node server.js"
+  },
+  "dependencies": {
+    "connect": "^2.x.x",
+    "wechat": "^1.2.x",
+    "wechat-api": "^1.6.0",
+    "wechat-enterprise": "0.0.5",
+    "wechat-oauth": "^1.0.1"
+ },
+  "license": "MIT"
+}
