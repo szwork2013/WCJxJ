@@ -1,19 +1,22 @@
-var connect = require('connect');
-var app = connect();
+var express = require('express');
+var app = express();
 var wechat = require('wechat');
 var WechatAPI = require('wechat-api');
 var OAuth = require('wechat-oauth');
-var client = new OAuth('wx5da8feae452c075e', '645a33c8ae5084ac3e739ed9bed559b7');
-//var corp = require('wechat-enterprise');
 var api = new WechatAPI("wx5da8feae452c075e", "645a33c8ae5084ac3e739ed9bed559b7");
 var config = {
     token: 'xiaof',
-    appid: 'wx5da8feae452c075e',
-    encodingAESKey: 'QBmt2VvlMHQ3MRKHTjMeCAFoJTkfbDcp90Z7wQOOlRm',
-    corpId: 'wx5da8feae452c075e'
+    appid: 'wx5da8feae452c075e'
 };
-
-app.use(connect.query()); // Or app.use(express.query());
+app.use(express. static (__dirname + '/public'));
+app.use(express.query()); // Or app.use(express.query());
+app.use('/wechat/web',function(req, res){
+    console.log(111);
+        //res.render('index', {
+        //    title: '首页',
+        //    posts: posts
+        //})
+});
 app.use('/wechat', wechat(config, function (req, res, next) {
      // 微信输入信息都在req.weixin上
      var message = req.weixin;
@@ -22,12 +25,39 @@ app.use('/wechat', wechat(config, function (req, res, next) {
          //api.getIp( function (err, data, res) {
          //    console.log(data);
          //})
-         client.getUser('openid', function (err, result) {
+         //client.getUser('openid', function (err, result) {
+         //    var userInfo = result;
+         //    console.log("userInfo::"+userInfo)
+         //});
+         //var url =  client.getAuthorizeURL('http://xiaofweixin.ngrok.io/', 'none', 'snsapi_base');
+         //oqr_Ft-3fd7HcIu_gCfO_sKMoleU
+         api.getUser('oqr_Ft-3fd7HcIu_gCfO_sKMoleU', function (err, result) {
              var userInfo = result;
-             console.log("userInfo::"+userInfo)
+             console.log(userInfo)
          });
-         var url =  client.getAuthorizeURL('redirectUrl', 'state', 'scope');
-         res.reply(url);
+         api.sendTemplate('oqr_Ft7dLB6Ijw4rPHIDpqXc__eM', "CDkIVPnQ0zENCaIwleeG6ynykn1Mkm76zDDjaH1QHhk", "wwww.baidu.com", "#FF0000", {
+             "first": {
+                 "value": "恭喜你购买成功！",
+                 "color": "#173177"
+             },
+             "keynote1": {
+                 "value": "巧克力",
+                 "color": "#EDAE08"
+             },
+             "keynote2": {
+                 "value": "39.8元",
+                 "color": "#173177"
+             },
+             "keynote3": {
+                 "value": "2014年9月16日",
+                 "color": "#F44248"
+             },
+             "remark": {
+                 "value": "欢迎再次购买！",
+                 "color": "#000000"
+             }
+         }, null);
+         res.reply("hehe");
      } else if (message.Content === 'text') {
          //你也可以这样回复text类型的信息
          res.reply({
@@ -59,6 +89,32 @@ app.use('/wechat', wechat(config, function (req, res, next) {
          ]);
      }
 }));
+app.use('/send', function(req, res){
+    console.log(11111);
+    api.sendTemplate('oqr_Ft-3fd7HcIu_gCfO_sKMoleU', "CDkIVPnQ0zENCaIwleeG6ynykn1Mkm76zDDjaH1QHhk", "wwww.baidu.com", "#FF0000", {
+        "first": {
+            "value": "恭喜你购买成功！",
+            "color": "#173177"
+        },
+        "keynote1": {
+            "value": "巧克力",
+            "color": "#EDAE08"
+        },
+        "keynote2": {
+            "value": "39.8元",
+            "color": "#173177"
+        },
+        "keynote3": {
+            "value": "2014年9月16日",
+            "color": "#F44248"
+        },
+        "remark": {
+            "value": "欢迎再次购买！",
+            "color": "#000000"
+        }
+    }, null);
+    res.render()
+});
 //client.getAccessToken('code', function (err, result) {
 //    var accessToken = result.data.access_token;
 //    var openid = result.data.openid;

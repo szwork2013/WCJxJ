@@ -7,7 +7,7 @@
       "start": "node server.js"
   },
   "dependencies": {
-    "connect": "^2.x.x",
+    "express": "^3.0",
     "wechat": "^1.2.x",
     "wechat-api": "^1.6.0",
     "wechat-enterprise": "0.0.5",
