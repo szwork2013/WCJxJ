@@ -11,7 +11,14 @@
     "wechat": "^1.2.x",
     "wechat-api": "^1.6.0",
     "wechat-enterprise": "0.0.5",
-    "wechat-oauth": "^1.0.1"
+    "wechat-oauth": "^1.0.1",
+    "ejs": "*",
+    "request":"*",
+    "morgan":"*",
+    "cookie-parser":"*",
+    "body-parser":"*",
+    "jssha":"*",
+    "wechat-oauth":"*"
  },
   "license": "MIT"
 }

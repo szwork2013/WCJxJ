@@ -3,10 +3,12 @@ var app = express();
 var wechat = require('wechat');
 var WechatAPI = require('wechat-api');
 var OAuth = require('wechat-oauth');
-var api = new WechatAPI("wx5da8feae452c075e", "645a33c8ae5084ac3e739ed9bed559b7");
+//var api = new WechatAPI("wx5da8feae452c075e", "645a33c8ae5084ac3e739ed9bed559b7");
 var config = {
     token: 'xiaof',
     appid: 'wx5da8feae452c075e'
+    //,
+    //encodingAESKey: 'lyXqsl8jZEYebvnenBECszQVrX0m0aD8WBtBmRAoOlF'
 };
 app.use(express. static (__dirname + '/public'));
 app.use(express.query()); // Or app.use(express.query());
@@ -31,32 +33,32 @@ app.use('/wechat', wechat(config, function (req, res, next) {
          //});
          //var url =  client.getAuthorizeURL('http://xiaofweixin.ngrok.io/', 'none', 'snsapi_base');
          //oqr_Ft-3fd7HcIu_gCfO_sKMoleU
-         api.getUser('oqr_Ft-3fd7HcIu_gCfO_sKMoleU', function (err, result) {
-             var userInfo = result;
-             console.log(userInfo)
-         });
-         api.sendTemplate('oqr_Ft7dLB6Ijw4rPHIDpqXc__eM', "CDkIVPnQ0zENCaIwleeG6ynykn1Mkm76zDDjaH1QHhk", "wwww.baidu.com", "#FF0000", {
-             "first": {
-                 "value": "恭喜你购买成功！",
-                 "color": "#173177"
-             },
-             "keynote1": {
-                 "value": "巧克力",
-                 "color": "#EDAE08"
-             },
-             "keynote2": {
-                 "value": "39.8元",
-                 "color": "#173177"
-             },
-             "keynote3": {
-                 "value": "2014年9月16日",
-                 "color": "#F44248"
-             },
-             "remark": {
-                 "value": "欢迎再次购买！",
-                 "color": "#000000"
-             }
-         }, null);
+         //api.getUser('oqr_Ft-3fd7HcIu_gCfO_sKMoleU', function (err, result) {
+         //    var userInfo = result;
+         //    console.log(userInfo)
+         //});
+         //api.sendTemplate('oqr_Ft7dLB6Ijw4rPHIDpqXc__eM', "CDkIVPnQ0zENCaIwleeG6ynykn1Mkm76zDDjaH1QHhk", "wwww.baidu.com", "#FF0000", {
+         //    "first": {
+         //        "value": "恭喜你购买成功！",
+         //        "color": "#173177"
+         //    },
+         //    "keynote1": {
+         //        "value": "巧克力",
+         //        "color": "#EDAE08"
+         //    },
+         //    "keynote2": {
+         //        "value": "39.8元",
+         //        "color": "#173177"
+         //    },
+         //    "keynote3": {
+         //        "value": "2014年9月16日",
+         //        "color": "#F44248"
+         //    },
+         //    "remark": {
+         //        "value": "欢迎再次购买！",
+         //        "color": "#000000"
+         //    }
+         //}, null);
          res.reply("hehe");
      } else if (message.Content === 'text') {
          //你也可以这样回复text类型的信息
